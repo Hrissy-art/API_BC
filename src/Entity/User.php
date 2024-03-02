@@ -8,11 +8,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ApiResource (normalizationContext:['groups'=>['users:read']])]
+#[ApiResource]
 
 
 #[ORM\InheritanceType("JOINED")]
@@ -25,12 +24,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['users:read'])]
 
     protected ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Groups(['users:read'])]
 
     protected ?string $email = null;
 
@@ -38,7 +35,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    #[Groups(['users:read'])]
 
     protected array $roles = [];
 
@@ -46,47 +42,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Groups(['users:read'])]
 
     protected ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['users:read'])]
 
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['users:read'])]
 
     private ?string $last_name = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['users:read'])]
 
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    #[Groups(['users:read'])]
 
     private ?int $street_number = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['users:read'])]
 
     private ?string $street_name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['users:read'])]
 
     private ?string $town = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['users:read'])]
 
     private ?string $district = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['users:read'])]
 
     private ?string $country = null;
 

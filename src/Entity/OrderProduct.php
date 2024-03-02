@@ -6,18 +6,17 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\OrderProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: OrderProductRepository::class)]
-#[ApiResource(normalizationContext:['groups'=>['orderProduct:read']])]
+#[ApiResource]
 
 class OrderProduct
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['orderProduct:read'])]
+   
 
     private ?int $id = null;
 
@@ -26,27 +25,27 @@ class OrderProduct
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
 
-    private ?product $product = null;
+    private ?Product $product = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
 
-    private ?material $material = null;
+    private ?Material $material = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
-    private ?order $order_product = null;
+    private ?Order $order_product = null;
 
-
-    #[ORM\ManyToOne(inversedBy: 'orderProducts')]
-
-    private ?qualityProduct $quality_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
 
-    private ?status $status_order = null;
+    private ?QualityProduct $quality_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
 
-    private ?service $service = null;
+    private ?Status $status_order = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orderProducts')]
+
+    private ?Service $service = null;
 
     public function getId(): ?int
     {
@@ -65,72 +64,72 @@ class OrderProduct
         return $this;
     }
 
-    public function getProduct(): ?product
+    public function getProduct(): ?Product
     {
         return $this->product;
     }
 
-    public function setProduct(?product $product): static
+    public function setProduct(?Product $product): static
     {
         $this->product = $product;
 
         return $this;
     }
 
-    public function getMaterial(): ?material
+    public function getMaterial(): ?Material
     {
         return $this->material;
     }
 
-    public function setMaterial(?material $material): static
+    public function setMaterial(?Material $material): static
     {
         $this->material = $material;
 
         return $this;
     }
 
-    public function getOrderProduct(): ?order
+    public function getOrderProduct(): ?Order
     {
         return $this->order_product;
     }
 
-    public function setOrderProduct(?order $order_product): static
+    public function setOrderProduct(?Order $order_product): static
     {
         $this->order_product = $order_product;
 
         return $this;
     }
 
-    public function getQualityProduct(): ?qualityProduct
+    public function getQualityProduct(): ?QualityProduct
     {
         return $this->quality_product;
     }
 
-    public function setQualityProduct(?qualityProduct $quality_product): static
+    public function setQualityProduct(?QualityProduct $quality_product): static
     {
         $this->quality_product = $quality_product;
 
         return $this;
     }
 
-    public function getStatusOrder(): ?status
+    public function getStatusOrder(): ?Status
     {
         return $this->status_order;
     }
 
-    public function setStatusOrder(?status $status_order): static
+    public function setStatusOrder(?Status $status_order): static
     {
         $this->status_order = $status_order;
 
         return $this;
     }
 
-    public function getService(): ?service
+    public function getService(): ?Service
     {
         return $this->service;
     }
 
-    public function setService(?service $service): static
+    public function setService(?Service $service): static
     {
         $this->service = $service;
 

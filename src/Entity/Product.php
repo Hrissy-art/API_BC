@@ -2,39 +2,34 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Metadata\ApiFilter;
+use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource (normalizationContext:['groups'=>['products:read']])]
-// operations:[new GetCollection(),
-// new Get()])]
-// #[ApiFilter(SearchFilter::class, properties:['product_name'=> 'ipartial'])]
+#[ApiResource]
+
 class Product
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['products:read'])]
 
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['products:read'])]
 
     private ?string $name_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    private ?category $category = null;
+    private ?Category $category = null;
 
     #[ORM\Column(nullable: true)]
+
     private ?float $price = null;
 
     #[ORM\OneToMany(targetEntity: OrderProduct::class, mappedBy: 'product')]
@@ -62,12 +57,12 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(?category $category): static
+    public function setCategory(?Category $category): static
     {
         $this->category = $category;
 
