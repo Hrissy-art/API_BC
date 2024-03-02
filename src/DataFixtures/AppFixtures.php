@@ -99,38 +99,6 @@ class AppFixtures extends Fixture
             $materialEntities[] = $substance;
 
         }
-
-        // $countries = [];
-
-        // for ($i = 0; $i < 10; $i++) {
-
-        //     $country = new Country();
-        //     $country->setName($faker->realTextBetween(3, 10));
-        //     $manager->persist($country);
-        //     $countries[] = $country;
-        // }
-
-        // $districts = [];
-        // for ($i = 0; $i < 10; $i++) {
-        //     $district = new District();
-        //     $district->setName($faker->realTextBetween(3, 10));
-        //     $district->setCountry($faker->randomElement($countries));
-        //     $manager->persist($district);
-        //     $districts[] = $district;
-
-        // }
-        // //towns 
-        // $towns = [];
-        // for ($i = 0; $i < 10; $i++) {
-        //     $town = new Town();
-        //     $town->setName($faker->realTextBetween(3, 10));
-        //     $town->setZipCode($faker->randomNumber(5, 10));
-        //     $town->setDistrict($faker->randomElement($districts));
-        //     $manager->persist($town);
-        //     $towns[] = $town;
-
-        // }
-
         // clients
         $clients = [];
         for ($i = 0; $i < 10; $i++) {
@@ -143,7 +111,7 @@ class AppFixtures extends Fixture
             );
             $client->setFirstName($faker->firstName());
             $client->setLastname($faker->lastName());
-            $client->setBirthday($faker->dateTimeBetween('-40 years', 'now'));
+            $client->setBirthday($faker->dateTimeBetween('-35 years', 'now'));
             $client->setStreetName($faker->address());
             $client->setStreetNumber($faker->randomNumber);
             $client->setTown($faker->randomElement());
@@ -186,7 +154,6 @@ class AppFixtures extends Fixture
             $order->setDateOrder($faker->dateTimeThisMonth());
             $order->setDateRender($faker->dateTimeThisMonth());
             $order->setClient($faker->randomElement($clients));
-
             $manager->persist($order);
 
         }
