@@ -25,32 +25,26 @@ class OrderProduct
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
-    #[Groups(['orderProduct:read'])]
 
     private ?product $product = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
-    #[Groups(['orderProduct:read'])]
 
     private ?material $material = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
     private ?order $order_product = null;
-    #[Groups(['orderProduct:read'])]
 
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
-    #[Groups(['orderProduct:read'])]
 
     private ?qualityProduct $quality_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
-    #[Groups(['orderProduct:read'])]
 
     private ?status $status_order = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderProducts')]
-    #[Groups(['orderProduct:read'])]
 
     private ?service $service = null;
 

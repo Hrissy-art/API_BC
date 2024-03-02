@@ -13,10 +13,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource (normalizationContext:['groups'=>['products:read']],
-operations:[new GetCollection(),
-new Get()])]
-#[ApiFilter(SearchFilter::class, properties:['product_name'=> 'ipartial'])]
+#[ApiResource (normalizationContext:['groups'=>['products:read']])]
+// operations:[new GetCollection(),
+// new Get()])]
+// #[ApiFilter(SearchFilter::class, properties:['product_name'=> 'ipartial'])]
 class Product
 {
     #[ORM\Id]
