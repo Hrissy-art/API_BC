@@ -26,6 +26,9 @@ class Order
     #[ORM\OneToMany(targetEntity: OrderProduct::class, mappedBy: 'order_product')]
     private Collection $orderProducts;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Client $client = null;
+
     public function __construct()
     {
         $this->orderProducts = new ArrayCollection();
@@ -86,6 +89,18 @@ class Order
                 $orderProduct->setOrderProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }
