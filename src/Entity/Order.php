@@ -8,32 +8,44 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+
 
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ApiResource ]
+#[ApiResource (normalizationContext:["groups"=>["order:read"]]) ]
+
+#[ORM\Table(name: '`order`')]
 
 class Order
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups([ "order:read"])]
+
    
 
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[Groups(["order:read"])]
+
 
     private ?\DateTimeInterface $date_order = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups(["order:read"])]
+
 
     private ?\DateTimeInterface $date_render = null;
 
-    #[ORM\OneToMany(targetEntity: OrderProduct::class, mappedBy: 'order_product')]
+    #[ORM\OneToMany(targetEntity: OrderProduct::class, mappedBy: 'product_orders')]
     private Collection $orderProducts;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[Groups(["order:read"])]
+
     private ?Client $client = null;
 
     public function __construct()
