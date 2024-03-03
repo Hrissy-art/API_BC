@@ -57,49 +57,49 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['users:read'])]
 
 
-    private ?string $first_name = null;
+    protected ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['users:read'])]
 
 
-    private ?string $last_name = null;
+    protected ?string $last_name = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(['users:read'])]
 
 
-    private ?\DateTimeInterface $birthday = null;
+    protected ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
     #[Groups(['users:read'])]
 
 
-    private ?int $street_number = null;
+    protected ?int $street_number = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['users:read'])]
 
 
-    private ?string $street_name = null;
+    protected ?string $street_name = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['users:read'])]
 
 
-    private ?string $town = null;
+    protected ?string $town = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['users:read'])]
 
 
-    private ?string $district = null;
+    protected ?string $district = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['users:read'])]
 
 
-    private ?string $country = null;
+    protected ?string $country = null;
 
     public function getId(): ?int
     {
