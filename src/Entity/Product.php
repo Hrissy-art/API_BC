@@ -31,7 +31,7 @@ class Product
     private ?string $name_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    // #[Groups(['products:read'])]
+    #[Groups(['products:read'])]
 
     private ?Category $category = null;
 

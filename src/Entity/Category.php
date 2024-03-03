@@ -18,10 +18,14 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['products:read'])]
+
 
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['products:read'])]
+
 
     private ?string $category_name = null;
 

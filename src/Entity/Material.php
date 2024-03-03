@@ -7,6 +7,8 @@ use App\Repository\MaterialRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+
 
 #[ORM\Entity(repositoryClass: MaterialRepository::class)]
 #[ApiResource]
@@ -19,9 +21,13 @@ class Material
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['orderProduct:read'])]
+
     private ?string $material_name = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['orderProduct:read'])]
+
     private ?float $coeff = null;
 
     #[ORM\OneToMany(targetEntity: OrderProduct::class, mappedBy: 'material')]
