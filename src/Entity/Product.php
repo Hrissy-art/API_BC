@@ -31,11 +31,16 @@ class Product
     private ?string $name_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
+    // #[Groups(['products:read'])]
+
     private ?Category $category = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['products:read'])]
+
 
     private ?float $price = null;
+
 
     #[ORM\OneToMany(targetEntity: OrderProduct::class, mappedBy: 'product')]
     private Collection $orderProducts;
